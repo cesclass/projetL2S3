@@ -37,6 +37,7 @@ void show_arguments(const arguments *a) {
 }
 
 void check_arguments(int argc, char **argv, arguments *argm) {
+    // debug //
     for(int i = 0 ; i < argc ; i++) {printf("argv[%d] : %s\n", i, argv[i]);}
 
     init_arguments(argm);
@@ -49,7 +50,9 @@ void check_arguments(int argc, char **argv, arguments *argm) {
             if (strcmp(argm->csv_type, "\0") == 0) {
                 argm->csv_type = argv[c];
                 c++;
-                argm->csv_path = argv[c];
+                if (c < argc) {
+                    argm->csv_path = argv[c];
+                }
             } else {
                 help_arguments();
                 printf("ERR : <%s> <%s>\n", argv[c], argm->csv_type);
@@ -60,7 +63,9 @@ void check_arguments(int argc, char **argv, arguments *argm) {
             if (!argm->logging) {
                 argm->logging = true;
                 c++;
-                argm->log_path = argv[c];
+                if(c < argc) {
+                    argm->log_path = argv[c];
+                }
             } else {
                 help_arguments();
                 printf("ERR : <%s> <%d>\n", argv[c], argm->logging);
@@ -71,7 +76,10 @@ void check_arguments(int argc, char **argv, arguments *argm) {
             if(!argm->method) {
                 argm->method = true;
                 c++;
-                argm->methode_type = argv[c];
+                if (c < argc) {
+                    argm->methode_type = argv[c];
+                }
+
             } else {
                 help_arguments();
                 printf("ERR : <%s> <%d>\n", argv[c], argm->method);
@@ -86,7 +94,29 @@ void check_arguments(int argc, char **argv, arguments *argm) {
 
     } // for argc
 
-    
+    if (strcmp(argm->csv_path, "\0") == 0 || (
+        argm->logging && strcmp(argm->log_path, "\0") == 0) || (
+        argm->method && strcmp(argm->methode_type, "\0") == 0 ))
+    {
+        help_arguments();
+        printf("ERR\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if (argm->method) {
+        if ((strcmp(argm->methode_type, "cm") != 0 &&
+            strcmp(argm->methode_type, "cp") != 0 &&
+            strcmp(argm->methode_type, "cs") != 0 ) || 
+            (strcmp(argm->csv_type, "-i") &&
+            strcmp(argm->methode_type, "va") != 0 &&
+            strcmp(argm->methode_type, "uni1") != 0 &&
+            strcmp(argm->methode_type, "uni2") != 0 ))
+        {
+            help_arguments();
+            printf("ERR\n");
+            exit(EXIT_FAILURE);
+        }
+    }
 
     show_arguments(argm);
 }
