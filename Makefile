@@ -2,24 +2,18 @@
 CC = gcc
 CFLAGS =-Wall -g
 
-EXECS = 				\
-	build/hanoi 		\
-	build/hanoi_pile
+EXECS = builds/exe
 
 all : $(EXECS)
 
 clean :
-	rm -rf $(EXECS) obj/*.o
+	rm -rf $(EXECS) objects/*.o
 
-build/hanoi : obj/hanoi.o obj/pile.o
+builds/exe : objects/main.o objects/argument_read.o
 	$(CC) -o $@ $^ $(CFLAGS)
 
-build/hanoi_pile : obj/hanoi_pile.o obj/pile.o
-	$(CC) -o $@ $^ $(CFLAGS)
+objects/main.o : headers/argument_read.h
+objects/argument_read.o : headers/argument_read.h
 
-obj/pile.o : head/pile.h
-obj/hanoi.o : head/pile.h
-obj/hanoi_pile.o : head/pile.h
-
-obj/%.o : src/%.c
+objects/%.o : sources/%.c
 	$(CC) -c $< -o $@ $(CFLAGS)
