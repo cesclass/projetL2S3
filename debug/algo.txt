@@ -1,0 +1,13 @@
+
+
+si -i
+    lecture csv
+    si non methode
+        appel methodes pour -i
+sinon // -d
+    lecture csv
+    si non methode
+        appel methodes pour -d
+
+selon methode
+    appel methode
