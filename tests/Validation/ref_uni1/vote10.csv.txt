@@ -1,0 +1,3 @@
+
+Nombre de votes nuls pour uninominal : 4
+Mode de scrutin : uninominal à un tour, 5 candidats, 10 votants, vainqueur = Charlotte aux poires, score = 50.00%
