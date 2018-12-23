@@ -12,28 +12,29 @@
 
 void help_arguments(void) {
     printf("+-----------------------------------------------+\n");
-    printf("|  Utilisation du programme :                   |\n");
+    printf("|  REV_PARTY Helper                             |\n");
+    printf("+-----------------------------------------------+\n");
+    printf("|  Ecriture des arguments :                     |\n");
     printf("|                                               |\n");
-    printf("|  Arguments :                                  |\n");
-    printf("|  -i | -d <file.csv>            (obligatoire)  |\n");
+    printf("|  -i | -d <file.csv> (obligatoire)             |\n");
     printf("|  i : le fichier csv contient la liste         |\n");
     printf("|      des votes avec l'id du votant            |\n");
     printf("|  d : le fichier csv contient la matrice       |\n");
     printf("|      des duels                                |\n");
     printf("|                                               |\n");
-    printf("|  -l <log_file.txt>               (optionnel)  |\n");
+    printf("|  -l <log_file.txt> (optionnel)                |\n");
     printf("|  l : enregistre les logs (etapes de calculs)  |\n");
     printf("|      dans le fichier specifie                 |\n");
     printf("|                                               |\n");
-    printf("|  -m <methode>                    (optionnel)  |\n");
+    printf("|  -m <methode> (optionnel)                     |\n");
     printf("|  m : specifie la methode de scrutin a employe |\n");
-    printf("|  <methode> :                                  |\n");
-    printf("|    uni1 : uninominal a 1 tour                 |\n");
-    printf("|    uni2 : uninominal a 2 tours                |\n");
-    printf("|    cm : condorcet minimax                     |\n");
-    printf("|    cs : condorcet schulze                     |\n");
-    printf("|    cp : condorcet paire                       |\n");
-    printf("|    va : variante (?)                          |\n");
+    printf("|  <methode> :                 (compatibilite)  |\n");
+    printf("|    va : variante (?)                    (-i)  |\n");
+    printf("|    uni1 : uninominal a 1 tour           (-i)  |\n");
+    printf("|    uni2 : uninominal a 2 tours          (-i)  |\n");
+    printf("|    cm : condorcet minimax          (-i | -d)  |\n");
+    printf("|    cs : condorcet schulze          (-i | -d)  |\n");
+    printf("|    cp : condorcet paire            (-i | -d)  |\n");
     printf("|                                               |\n");
     printf("+-----------------------------------------------+\n");
 }
@@ -128,11 +129,11 @@ void check_arguments(int argc, char **argv, arguments *argm) {
         if ((strcmp(argm->methode_type, "cm") != 0 &&
             strcmp(argm->methode_type, "cp") != 0 &&
             strcmp(argm->methode_type, "cs") != 0 ) || 
-            (strcmp(argm->csv_type, "-i") &&
+            (strcmp(argm->csv_type, "-i") == 0 &&
             strcmp(argm->methode_type, "va") != 0 &&
             strcmp(argm->methode_type, "uni1") != 0 &&
             strcmp(argm->methode_type, "uni2") != 0 ))
-        {
+        {   
             printf("ERR-2\n");
             help_arguments();
             exit(EXIT_FAILURE);
