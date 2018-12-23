@@ -20,13 +20,17 @@ int main(int argc, char **argv) {
     if (strcmp(argm.csv_type, "-i") == 0) {
         // read_csv_i()
         if (!argm.method) {
+            return 10;
             // appel methodes
         }
+        return 11;
     } else {
         // read_csv_d()
         if (!argm.method) {
+            return 20;
             // appel methodes
         }
+        return 21;
     }
 
     /*

@@ -119,7 +119,7 @@ void check_arguments(int argc, char **argv, arguments *argm) {
         argm->logging && strcmp(argm->log_path, "\0") == 0) || (
         argm->method && strcmp(argm->methode_type, "\0") == 0 ))
     {
-        printf("ERR\n");
+        printf("ERR-1\n");
         help_arguments();
         exit(EXIT_FAILURE);
     }
@@ -133,7 +133,7 @@ void check_arguments(int argc, char **argv, arguments *argm) {
             strcmp(argm->methode_type, "uni1") != 0 &&
             strcmp(argm->methode_type, "uni2") != 0 ))
         {
-            printf("ERR\n");
+            printf("ERR-2\n");
             help_arguments();
             exit(EXIT_FAILURE);
         }
