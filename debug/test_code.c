@@ -1,84 +1,53 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
+#include <stdlib.h>
 
-typedef struct arguments {
-    char *csv_type;
-    char *csv_path;
-    bool logging;
-    char *log_path;
-    bool method;
-    char *methode_type;
-} arguments;
-
-void init_arguments(arguments *a) {
-    a->csv_type = "\0";
-    a->csv_path = "\0";
-    a->logging = false;
-    a->log_path = "\0";
-    a->method = false;
-    a->methode_type = "\0";
+int * creer_tab_int(int dim) {
+    int * i;
+    i = malloc(dim*sizeof(int));
+    return i;
 }
 
-void show_arguments(const arguments *a) {
-    printf("csv_type : %s\n", a->csv_type);
-    printf("csv_path : %s\n", a->csv_path);
-    printf("logging : %d\n", a->logging);
-    printf("log_path : %s\n", a->log_path);
-    printf("method : %d\n", a->method);
-    printf("methode_type : %s\n", a->methode_type);
-    printf("\n");
-}
-
-int main(int argc, char *argv[]) {
-
-    for(int i = 0 ; i < argc ; i++) {printf("argv[%d] : %s\n", i, argv[i]);}
-
-    arguments argm;
-    init_arguments(&argm);
-    printf("\n");
-    show_arguments(&argm);
-
-    for(int c = 1 ; c < argc ; c++) {
-
-        if (strcmp(argv[c], "-i") == 0 || strcmp(argv[c], "-d") == 0) {
-            if (strcmp(argm.csv_type, "\0") == 0) {
-                argm.csv_type = argv[c];
-                c++;
-                argm.csv_path = argv[c];
-            } else {
-                continue;
-                // ERREUR
-            }
-
-        } else if (strcmp(argv[c], "-l") == 0) {
-            if (!argm.logging) {
-                argm.logging = true;
-                c++;
-                argm.log_path = argv[c];
-            } else {
-                continue;
-                // ERREUR
-            }
-
-        } else if (strcmp(argv[c], "-m") == 0) {
-            if(!argm.method) {
-                argm.method = true;
-                c++;
-                argm.methode_type = argv[c];
-            } else {
-                continue;
-                // ERREUR
-            }
-
-        } else {
-            continue;
-            // ERREUR
-        }
-
+int ** creer_mat_int(int nbRows, int nbCols) {
+    int ** i;
+    i = malloc(nbRows*sizeof(int *));
+    for(int c = 0; c < nbRows; c++) {
+        i[c] = creer_tab_int(nbCols);
     }
+    return i;
+}
 
-    show_arguments(&argm);
+void init_tab_int(int *tab, int dim, int valeur) {
+    for(int c = 0; c < dim; c++) {
+        tab[c] = valeur;
+    }
+}
+
+void init_mat_int(int **mat, int nbRows, int nbCols, int valeur) {
+    for(int i = 0; i < nbRows; i++) {
+        for(int j = 0; j < nbCols; j++) {
+            mat[i][j] = valeur;
+        }
+    }
+}
+
+void affiche_tab_int(int *tab, int dim, FILE *logfp) {
+    for(int c = 0; c < dim; c++) {
+        fprintf(logfp, "%d\t", tab[c]);
+    }
+    fprintf(logfp, "\n");
+}
+
+void affiche_mat_int(int **duels_mat, int nbRows, int nbCols, FILE *logfp) {
+    for(int c = 0; c < nbRows; c++) {
+        affiche_tab_int(duels_mat[c], nbCols, logfp);
+    }
+}
+
+int main(void) {
+
+    int ** k = creer_mat_int(4, 5);
+    init_mat_int(k, 4, 5, 2);
+    affiche_mat_int(k, 4, 5, stdout);
 
     return 0;
 }
