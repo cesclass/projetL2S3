@@ -45,9 +45,14 @@ void affiche_mat_int(int **duels_mat, int nbRows, int nbCols, FILE *logfp) {
 
 int main(void) {
 
-    int ** k = creer_mat_int(4, 5);
-    init_mat_int(k, 4, 5, 2);
-    affiche_mat_int(k, 4, 5, stdout);
+    int R, C, V;
+    R = 2;
+    C = 4;
+    V = 9;
+
+    int ** k = creer_mat_int(R, C);
+    init_mat_int(k, R, C, V);
+    affiche_mat_int(k, R, C, stdout);
 
     return 0;
 }

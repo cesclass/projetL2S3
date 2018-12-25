@@ -56,10 +56,43 @@ void affiche_mat_int(int **duels_mat, int nbRows, int nbCols, FILE *logfp) {
 
 // STRUCT ==================================================
 
-void creer_t_tab_int_dyn(t_tab_int_dyn *stTab, int dim);
-void creer_t_mat_int_dyn(t_mat_int_dyn *stTab, int nbRows, int nbCols);
-void creer_t_mat_char_dyn(t_mat_char_star_dyn * s_tabmots);
+void creer_t_tab_int_dyn(t_tab_int_dyn *stTab, int dim) {
+    stTab->dim = dim;
+    stTab->tab = creer_tab_int(dim);
+}
 
-void affiche_t_tab_int_dyn(t_tab_int_dyn t_tab, FILE *logfp);
-void affiche_t_mat_int_dyn(t_mat_int_dyn t_tab, FILE *logfp);
-void affiche_t_mat_char_star_dyn(t_mat_char_star_dyn t_tabmots, FILE *logfp);
+void creer_t_mat_int_dyn(t_mat_int_dyn *stTab, int nbRows, int nbCols) {
+    stTab->nbRows = nbRows;
+    stTab->nbCols = nbCols;
+    stTab->tab = creer_mat_int(nbRows, nbCols);
+}
+
+void creer_t_mat_char_dyn(t_mat_char_star_dyn * s_tabmots) {
+    s_tabmots->offset = DEFAULT_OFFSET;
+    s_tabmots->nbRows = DEFAULT_ROWS;
+    s_tabmots->nbCols = DEFAULT_COLS;
+
+    s_tabmots->tab = malloc(DEFAULT_ROWS*sizeof(char **));
+    for(int i = 0; i < DEFAULT_ROWS; i++) {
+        s_tabmots->tab[i] = malloc(DEFAULT_COLS*sizeof(char *));
+        for(int j = 0; j < DEFAULT_COLS; j++) {
+            s_tabmots->tab[i][j] = malloc(DEFAULT_LEN*sizeof(char));
+        }
+    }
+}
+
+void affiche_t_tab_int_dyn(t_tab_int_dyn t_tab, FILE *logfp) {
+    affiche_tab_int(t_tab.tab, t_tab.dim, logfp);
+}
+
+void affiche_t_mat_int_dyn(t_mat_int_dyn t_tab, FILE *logfp) {
+    affiche_mat_int(t_tab.tab, t_tab.nbRows, t_tab.nbCols, logfp);
+}
+
+void affiche_t_mat_char_star_dyn(t_mat_char_star_dyn t_tabmots, FILE *logfp) {
+    for(int i = 0; i < t_tabmots.nbRows; i++) {
+        for(int j = 0; j < t_tabmots.nbCols; j++) {
+            fprintf(logfp, "| %s\t", t_tabmots.tab[i][j]);
+        }
+    }
+}
