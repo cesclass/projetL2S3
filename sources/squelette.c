@@ -140,11 +140,13 @@ void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn 
             votes->tab[i][j][k] = ch;
             votes->nbRows = MAX(votes->nbRows, i+1);
             votes->nbCols = MAX(votes->nbCols, j+1);
+            k += 1;
         }
         ch = fgetc(csv);
     }
 
-    resize_t_mat_str_dyn(votes);
+    // Pb memoire, correction obligatoire
+    // resize_t_mat_str_dyn(votes);
 
     // debug
     affiche_t_mat_str_dyn((*votes), stdout);

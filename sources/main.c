@@ -32,30 +32,38 @@ int main(int argc, char **argv) {
     if (strcmp(argm.csv_type, "-i") == 0) {
         read_csv(csv, argm.csv_type, &votes, &duels);
         if (!argm.method) {
-            return 294;
+            //methodes_i(&votes, &duels);
         }
     } else {
         read_csv(csv, argm.csv_type, &votes, &duels);
         if (!argm.method) {
-            //affiche_t_mat_str_dyn(votes, logfp);
+            //methodes_d(&votes, &duels);
         }
     }
 
     fclose(csv);
 
     if (strcmp(argm.methode_type, "va") == 0) {
-
+        //vote_alternatif();
     } else if (strcmp(argm.methode_type, "uni1") == 0) {
-
+        //uninominal1();
     } else if (strcmp(argm.methode_type, "uni2") == 0) {
-
+        //uninominal2();
     } else if (strcmp(argm.methode_type, "cm") == 0) {
-
+        //condorcet_m();
     } else if (strcmp(argm.methode_type, "cp") == 0) {
-
+        //condorcet_p();
     } else if (strcmp(argm.methode_type, "cs") == 0) {
-
+        //condorcet_s();
     }
+
+
+    if(logfp != stdout) {
+        fclose(logfp);
+    }
+    
+    free(votes.tab);
+    free(duels.tab);
 
     return 0;
 }
