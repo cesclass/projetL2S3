@@ -17,26 +17,40 @@ int main(int argc, char **argv) {
     arguments argm;
     check_arguments(argc, argv, &argm);
 
-    if (strcmp(argm.csv_type, "-i") == 0) {
-        // read_csv_i()
-        if (!argm.method) {
-            return 10;
-            // appel methodes
-        }
-        return 11;
+    FILE * csv = fopen(argm.csv_path, "r");
+    FILE * logfp;
+    
+    if (argm.logging) {
+        logfp = fopen(argm.log_path, "a");
     } else {
-        // read_csv_d()
-        if (!argm.method) {
-            return 20;
-            // appel methodes
-        }
-        return 21;
+        logfp = stdout;
     }
 
-    /*
-     * appel d'une fonction ou switch case ou if elif else
-     * décision selon la simplicité et la taille de l'implémentation
-     */
+    if (strcmp(argm.csv_type, "-i") == 0) {
+        read_csv_i(csv);
+        if (!argm.method) {
+            // appel methodes
+        }
+    } else {
+        read_csv_d(csv);
+        if (!argm.method) {
+            // appel methodes
+        }
+    }
+
+    if (strcmp(argm.methode_type, "va") == 0) {
+
+    } else if (strcmp(argm.methode_type, "uni1") == 0) {
+
+    } else if (strcmp(argm.methode_type, "uni2") == 0) {
+
+    } else if (strcmp(argm.methode_type, "cm") == 0) {
+
+    } else if (strcmp(argm.methode_type, "cp") == 0) {
+
+    } else if (strcmp(argm.methode_type, "cs") == 0) {
+
+    }
 
     return 0;
 }

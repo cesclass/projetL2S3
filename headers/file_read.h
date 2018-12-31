@@ -10,6 +10,6 @@
 
 #include <stdio.h>
 
-void read_csv_d();
+void read_csv_d(FILE * csv);
 
-void read_csv_i();
+void read_csv_i(FILE * csv);

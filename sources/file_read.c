@@ -9,3 +9,11 @@
  */
 
 #include "../headers/file_read.h"
+
+void read_csv_d(FILE * csv) {
+    return;
+}
+
+void read_csv_i(FILE * csv) {
+    return;
+}
