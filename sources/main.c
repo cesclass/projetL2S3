@@ -32,14 +32,16 @@ int main(int argc, char **argv) {
     if (strcmp(argm.csv_type, "-i") == 0) {
         read_csv(csv, argm.csv_type, &votes, &duels);
         if (!argm.method) {
-            // appel methodes
+            return 294;
         }
     } else {
         read_csv(csv, argm.csv_type, &votes, &duels);
         if (!argm.method) {
-            // appel methodes
+            //affiche_t_mat_str_dyn(votes, logfp);
         }
     }
+
+    fclose(csv);
 
     if (strcmp(argm.methode_type, "va") == 0) {
 

@@ -59,12 +59,15 @@ void show_arguments(const arguments *a) {
 }
 
 void check_arguments(int argc, char **argv, arguments *argm) {
-    // debug //
-    for(int i = 0 ; i < argc ; i++) {printf("argv[%d] : %s\n", i, argv[i]);}
+    // debug
+    // for(int i = 0 ; i < argc ; i++) {printf("argv[%d] : %s\n", i, argv[i]);}
+     
 
     init_arguments(argm);
     printf("\n");
-    show_arguments(argm);
+
+    // debug
+    // show_arguments(argm);
 
     for(int c = 1 ; c < argc ; c++) {
 
@@ -140,5 +143,6 @@ void check_arguments(int argc, char **argv, arguments *argm) {
         }
     }
 
-    show_arguments(argm);
+    // debug
+    // show_arguments(argm);
 }

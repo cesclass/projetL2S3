@@ -68,9 +68,9 @@ void creer_t_mat_int_dyn(t_mat_int_dyn *stTab, int nbRows, int nbCols) {
 }
 
 void creer_t_mat_str_dyn(t_mat_str_dyn * s_tabmots) {
-    s_tabmots->offset = DEFAULT_OFFSET;
-    s_tabmots->nbRows = DEFAULT_ROWS;
-    s_tabmots->nbCols = DEFAULT_COLS;
+    // s_tabmots->offset = DEFAULT_OFFSET;
+    s_tabmots->nbRows = 0;
+    s_tabmots->nbCols = 0;
 
     s_tabmots->tab = malloc(DEFAULT_ROWS*sizeof(char **));
     for(int i = 0; i < DEFAULT_ROWS; i++) {
@@ -92,19 +92,31 @@ void affiche_t_mat_int_dyn(t_mat_int_dyn t_tab, FILE *logfp) {
 void affiche_t_mat_str_dyn(t_mat_str_dyn t_tabmots, FILE *logfp) {
     for(int i = 0; i < t_tabmots.nbRows; i++) {
         for(int j = 0; j < t_tabmots.nbCols; j++) {
-            fprintf(logfp, "| %s\t", t_tabmots.tab[i][j]);
+            fprintf(logfp, "%s\t", t_tabmots.tab[i][j]);
         }
+        fprintf(logfp, "\n");
     }
 }
 
 // CONVERT =================================================
 
-void remplir_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels) {
+void resize_t_mat_str_dyn(t_mat_str_dyn *mat) {
+    mat->tab = realloc(mat->tab, mat->nbRows*sizeof(char **));
+    for(int i = 0; i < mat->nbRows; i++) {
+        mat->tab[i] = realloc(mat->tab[i], mat->nbCols*sizeof(char *));
+    }
+}
 
+void remplir_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels) {
+    for(int i = 0; i < duels->nbRows; i++) {
+        for(int j = 0; j < duels->nbCols; j++) {
+            duels->tab[i][j] = atoi(votes->tab[i+1][j]);
+        }
+    }
 }
 
 void convertir_en_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels) {
-
+    return;
 }
 
 
@@ -113,23 +125,29 @@ void convertir_en_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels) {
 void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn * duels) {
     creer_t_mat_str_dyn(votes);
 
-    char ch = fgetc(csv);
     int i = 0, j = 0, k = 0;
+    char ch = fgetc(csv);
     
-    while(ch != EOF) {
-        if (strcmp(ch, "\t") == 0) {
+    while(!feof(csv)) {
+        if (strcmp(&ch, "\t") == 0) {
             j += 1;
             k = 0;
-        } else if (strcmp(ch, "\n") == 0) {
+        } else if (strcmp(&ch, "\n") == 0) {
             i += 1;
             j = 0;
             k = 0;
         } else {
             votes->tab[i][j][k] = ch;
+            votes->nbRows = MAX(votes->nbRows, i+1);
+            votes->nbCols = MAX(votes->nbCols, j+1);
         }
+        ch = fgetc(csv);
     }
-    votes->nbRows = i;
-    votes->nbCols = j;
+
+    resize_t_mat_str_dyn(votes);
+
+    // debug
+    affiche_t_mat_str_dyn((*votes), stdout);
     
     if (strcmp(csv_type, "-i") == 0) {
         votes->offset = DEFAULT_OFFSET;
@@ -140,5 +158,9 @@ void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn 
         creer_t_mat_int_dyn(duels, votes->nbCols, votes->nbCols);
         remplir_duels(votes, duels);
     }
+
+    // debug
+    printf("\n");
+    affiche_t_mat_int_dyn((*duels), stdout);
     
 }
