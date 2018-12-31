@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 #include "../headers/argument_read.h"
-#include "../headers/file_read.h"
+#include "../headers/squelette.h"
 
 int main(int argc, char **argv) {
 
@@ -26,13 +26,16 @@ int main(int argc, char **argv) {
         logfp = stdout;
     }
 
+    t_mat_str_dyn votes;
+    t_mat_int_dyn duels;
+
     if (strcmp(argm.csv_type, "-i") == 0) {
-        read_csv_i(csv);
+        read_csv(csv, argm.csv_type, &votes, &duels);
         if (!argm.method) {
             // appel methodes
         }
     } else {
-        read_csv_d(csv);
+        read_csv(csv, argm.csv_type, &votes, &duels);
         if (!argm.method) {
             // appel methodes
         }

@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
@@ -29,7 +30,7 @@ typedef struct s_mat_char_dyn{
   int nbRows;
   int nbCols;
   int offset; // donne le nombre de colonnes avant celles des candidats
-} t_mat_char_star_dyn;
+} t_mat_str_dyn;
 
 //  struct arc pour les graphes
 typedef struct s_arc_p{ //  arc pondéré
@@ -96,8 +97,10 @@ void affiche_mat_int(int **duels_mat, int nbRows, int nbCols, FILE *logfp);
 
 void creer_t_mat_int_dyn(t_mat_int_dyn *stTab, int nbRows, int nbCols);
 void creer_t_tab_int_dyn(t_tab_int_dyn *stTab, int dim);
-void creer_t_mat_char_dyn(t_mat_char_star_dyn * s_tabmots);
+void creer_t_mat_str_dyn(t_mat_str_dyn * s_tabmots);
 void affiche_t_tab_int_dyn(t_tab_int_dyn t_tab, FILE *logfp);
-void affiche_t_mat_char_star_dyn(t_mat_char_star_dyn t_tabmots, FILE *logfp);
+void affiche_t_mat_str_dyn(t_mat_str_dyn t_tabmots, FILE *logfp);
 void affiche_t_mat_int_dyn(t_mat_int_dyn t_tab, FILE *logfp);
 void affiche_mat_int(int **duels_mat, int nbRows, int nbCols, FILE *logfp);
+
+void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn * duels);

@@ -67,7 +67,7 @@ void creer_t_mat_int_dyn(t_mat_int_dyn *stTab, int nbRows, int nbCols) {
     stTab->tab = creer_mat_int(nbRows, nbCols);
 }
 
-void creer_t_mat_char_dyn(t_mat_char_star_dyn * s_tabmots) {
+void creer_t_mat_str_dyn(t_mat_str_dyn * s_tabmots) {
     s_tabmots->offset = DEFAULT_OFFSET;
     s_tabmots->nbRows = DEFAULT_ROWS;
     s_tabmots->nbCols = DEFAULT_COLS;
@@ -89,10 +89,56 @@ void affiche_t_mat_int_dyn(t_mat_int_dyn t_tab, FILE *logfp) {
     affiche_mat_int(t_tab.tab, t_tab.nbRows, t_tab.nbCols, logfp);
 }
 
-void affiche_t_mat_char_star_dyn(t_mat_char_star_dyn t_tabmots, FILE *logfp) {
+void affiche_t_mat_str_dyn(t_mat_str_dyn t_tabmots, FILE *logfp) {
     for(int i = 0; i < t_tabmots.nbRows; i++) {
         for(int j = 0; j < t_tabmots.nbCols; j++) {
             fprintf(logfp, "| %s\t", t_tabmots.tab[i][j]);
         }
     }
+}
+
+// CONVERT =================================================
+
+void remplir_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels) {
+
+}
+
+void convertir_en_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels) {
+
+}
+
+
+// FICHIERS ================================================
+
+void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn * duels) {
+    creer_t_mat_str_dyn(votes);
+
+    char ch = fgetc(csv);
+    int i = 0, j = 0, k = 0;
+    
+    while(ch != EOF) {
+        if (strcmp(ch, "\t") == 0) {
+            j += 1;
+            k = 0;
+        } else if (strcmp(ch, "\n") == 0) {
+            i += 1;
+            j = 0;
+            k = 0;
+        } else {
+            votes->tab[i][j][k] = ch;
+        }
+    }
+    votes->nbRows = i;
+    votes->nbCols = j;
+    
+    if (strcmp(csv_type, "-i") == 0) {
+        votes->offset = DEFAULT_OFFSET;
+        creer_t_mat_int_dyn(duels, votes->nbCols-votes->offset, votes->nbCols-votes->offset);
+        convertir_en_duels(votes, duels);
+    } else {
+        votes->offset = 0;
+        creer_t_mat_int_dyn(duels, votes->nbCols, votes->nbCols);
+        remplir_duels(votes, duels);
+    }
+    
 }
