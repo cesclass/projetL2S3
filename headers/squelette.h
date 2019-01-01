@@ -1,3 +1,12 @@
+/**
+ * @file squelette.h
+ * @author Cyril E (cyril.esclassan@univ-tlse3.fr)
+ * 
+ * @brief 
+ * 
+ * @licence MIT
+ * 
+ */
 
 #include <stdio.h>
 #include <stdlib.h>

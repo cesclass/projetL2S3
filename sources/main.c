@@ -31,15 +31,14 @@ int main(int argc, char **argv) {
 
     if (strcmp(argm.csv_type, "-i") == 0) {
         read_csv(csv, argm.csv_type, &votes, &duels);
-        if (!argm.method) {
-            //methodes_i(&votes, &duels);
-        }
     } else {
         read_csv(csv, argm.csv_type, &votes, &duels);
-        if (!argm.method) {
-            //methodes_d(&votes, &duels);
-        }
     }
+
+    // debug
+    affiche_t_mat_str_dyn(votes, logfp);
+    printf("\n");
+    affiche_t_mat_int_dyn(duels, logfp);
 
     fclose(csv);
 
@@ -55,6 +54,8 @@ int main(int argc, char **argv) {
         //condorcet_p();
     } else if (strcmp(argm.methode_type, "cs") == 0) {
         //condorcet_s();
+    } else {
+        //placeholder()
     }
 
 

@@ -116,7 +116,16 @@ void remplir_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels) {
 }
 
 void convertir_en_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels) {
-    return;
+    init_mat_int(duels->tab, duels->nbRows, duels->nbCols, 0);
+    for(int i = 1; i < votes->nbRows; i++) {
+        for(int j = votes->offset; j < votes->nbCols; j++) {
+            for(int k = votes->offset; k < votes->nbCols; k++) {
+                if(j != k && atoi(votes->tab[i][j]) < atoi(votes->tab[i][k])) {
+                    duels->tab[j-votes->offset][k-votes->offset] += 1;
+                }
+            }
+        }
+    }
 }
 
 
@@ -129,10 +138,10 @@ void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn 
     char ch = fgetc(csv);
     
     while(!feof(csv)) {
-        if (strcmp(&ch, "\t") == 0) {
+        if (ch == '\t') {
             j += 1;
             k = 0;
-        } else if (strcmp(&ch, "\n") == 0) {
+        } else if (ch == '\n') {
             i += 1;
             j = 0;
             k = 0;
@@ -147,9 +156,6 @@ void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn 
 
     // Pb memoire, correction obligatoire
     // resize_t_mat_str_dyn(votes);
-
-    // debug
-    affiche_t_mat_str_dyn((*votes), stdout);
     
     if (strcmp(csv_type, "-i") == 0) {
         votes->offset = DEFAULT_OFFSET;
@@ -160,9 +166,5 @@ void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn 
         creer_t_mat_int_dyn(duels, votes->nbCols, votes->nbCols);
         remplir_duels(votes, duels);
     }
-
-    // debug
-    printf("\n");
-    affiche_t_mat_int_dyn((*duels), stdout);
     
 }
