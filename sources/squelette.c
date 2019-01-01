@@ -154,8 +154,7 @@ void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn 
         ch = fgetc(csv);
     }
 
-    // Pb memoire, correction obligatoire
-    // resize_t_mat_str_dyn(votes);
+    resize_t_mat_str_dyn(votes);
     
     if (strcmp(csv_type, "-i") == 0) {
         votes->offset = DEFAULT_OFFSET;

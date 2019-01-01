@@ -15,25 +15,26 @@
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
 
-// Definition de constantes pour la construction de "t_mat_char_star_dyn"
+// Definition de constantes pour la construction de "t_mat_str_dyn"
 #define DEFAULT_OFFSET 3    // Offset par defaut
 #define DEFAULT_ROWS 1000   // Nombre de lignes par defaut
 #define DEFAULT_COLS 100    // Nombre de colonnes par defaut
 #define DEFAULT_LEN 50      // Nombre de caractere par case par defaut
 
-//  struct pour encapsuler des tableaux dynamiques d'entiers avec la dimension.
+// Tableau d'entiers
 typedef struct s_tab_dyn{
   int * tab;
   int dim;
 } t_tab_int_dyn;
 
+// Matrice d'entiers
 typedef struct s_mat_dyn{
   int ** tab;
   int nbRows;
   int nbCols;
 } t_mat_int_dyn;
 
-//  struct idem avec des chaînes de cractères
+// Matrices de chaines de caracteres
 typedef struct s_mat_char_dyn{
   char *** tab;
   int nbRows;
@@ -41,8 +42,8 @@ typedef struct s_mat_char_dyn{
   int offset; // donne le nombre de colonnes avant celles des candidats
 } t_mat_str_dyn;
 
-//  struct arc pour les graphes
-typedef struct s_arc_p{ //  arc pondéré
+// struct arc pour les graphes
+typedef struct s_arc_p{ // arc pondéré
   int orig;
   int dest;
   int poids;

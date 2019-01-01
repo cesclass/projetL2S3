@@ -1,6 +1,6 @@
 #makefile pile dynamique
 CC = gcc
-CFLAGS =-Wall -g
+CFLAGS = -Wall -g
 
 EXECS = builds/exe
 
@@ -11,12 +11,14 @@ clean :
 
 builds/exe :	objects/main.o				\
                 objects/argument_read.o		\
-                objects/squelette.o
+                objects/squelette.o			\
+				objects/methodes.o
 	$(CC) -o $@ $^ $(CFLAGS)
 
 objects/main.o : headers/argument_read.h
 objects/argument_read.o : headers/argument_read.h
 objects/squelette.o : headers/squelette.h
+objects/methodes.o : headers/methodes.h
 
 objects/%.o : sources/%.c
 	$(CC) -c $< -o $@ $(CFLAGS)

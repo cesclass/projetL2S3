@@ -29,7 +29,7 @@ void help_arguments(void) {
     printf("|  -m <methode> (optionnel)                     |\n");
     printf("|  m : specifie la methode de scrutin a employe |\n");
     printf("|  <methode> :                 (compatibilite)  |\n");
-    printf("|    va : variante (?)                    (-i)  |\n");
+    printf("|    va : elemination successive          (-i)  |\n");
     printf("|    uni1 : uninominal a 1 tour           (-i)  |\n");
     printf("|    uni2 : uninominal a 2 tours          (-i)  |\n");
     printf("|    cm : condorcet minimax          (-i | -d)  |\n");
