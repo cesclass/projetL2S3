@@ -16,7 +16,6 @@
 #define MAX(a,b) (((a)>(b))?(a):(b))
 
 // Definition de constantes pour la construction de "t_mat_str_dyn"
-#define DEFAULT_OFFSET 3    // Offset par defaut
 #define DEFAULT_ROWS 1000   // Nombre de lignes par defaut
 #define DEFAULT_COLS 100    // Nombre de colonnes par defaut
 #define DEFAULT_LEN 50      // Nombre de caractere par case par defaut
@@ -112,5 +111,3 @@ void affiche_t_tab_int_dyn(t_tab_int_dyn t_tab, FILE *logfp);
 void affiche_t_mat_str_dyn(t_mat_str_dyn t_tabmots, FILE *logfp);
 void affiche_t_mat_int_dyn(t_mat_int_dyn t_tab, FILE *logfp);
 void affiche_mat_int(int **duels_mat, int nbRows, int nbCols, FILE *logfp);
-
-void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn * duels);

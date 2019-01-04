@@ -8,6 +8,9 @@
  * 
  */
 
+#ifndef SQUELETTE
+#define SQUELETTE
+
 #include "../headers/squelette.h"
 
 // INT =====================================================
@@ -68,7 +71,6 @@ void creer_t_mat_int_dyn(t_mat_int_dyn *stTab, int nbRows, int nbCols) {
 }
 
 void creer_t_mat_str_dyn(t_mat_str_dyn * s_tabmots) {
-    // s_tabmots->offset = DEFAULT_OFFSET;
     s_tabmots->nbRows = 0;
     s_tabmots->nbCols = 0;
 
@@ -100,7 +102,7 @@ void affiche_t_mat_str_dyn(t_mat_str_dyn t_tabmots, FILE *logfp) {
 
 // CONVERT =================================================
 
-void resize_t_mat_str_dyn(t_mat_str_dyn *mat) {
+void reduire_t_mat_str_dyn(t_mat_str_dyn *mat) {
     mat->tab = realloc(mat->tab, mat->nbRows*sizeof(char **));
     for(int i = 0; i < mat->nbRows; i++) {
         mat->tab[i] = realloc(mat->tab[i], mat->nbCols*sizeof(char *));
@@ -131,39 +133,4 @@ void convertir_en_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels) {
 
 // FICHIERS ================================================
 
-void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn * duels) {
-    creer_t_mat_str_dyn(votes);
-
-    int i = 0, j = 0, k = 0;
-    char ch = fgetc(csv);
-    
-    while(!feof(csv)) {
-        if (ch == '\t') {
-            j += 1;
-            k = 0;
-        } else if (ch == '\n') {
-            i += 1;
-            j = 0;
-            k = 0;
-        } else {
-            votes->tab[i][j][k] = ch;
-            votes->nbRows = MAX(votes->nbRows, i+1);
-            votes->nbCols = MAX(votes->nbCols, j+1);
-            k += 1;
-        }
-        ch = fgetc(csv);
-    }
-
-    resize_t_mat_str_dyn(votes);
-    
-    if (strcmp(csv_type, "-i") == 0) {
-        votes->offset = DEFAULT_OFFSET;
-        creer_t_mat_int_dyn(duels, votes->nbCols-votes->offset, votes->nbCols-votes->offset);
-        convertir_en_duels(votes, duels);
-    } else {
-        votes->offset = 0;
-        creer_t_mat_int_dyn(duels, votes->nbCols, votes->nbCols);
-        remplir_duels(votes, duels);
-    }
-    
-}
+#endif

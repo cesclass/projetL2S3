@@ -8,6 +8,9 @@
  * 
  */
 
+#ifndef ARGUMENT_READ
+#define ARGUMENT_READ
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -55,3 +58,5 @@ void show_arguments(const arguments *a);
  * @param argm 
  */
 void check_arguments(int argc, char **argv, arguments *argm);
+
+#endif

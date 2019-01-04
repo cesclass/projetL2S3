@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "../headers/argument_read.h"
+#include "../headers/file_read.h"
 #include "../headers/squelette.h"
 #include "../headers/methodes.h"
 
@@ -26,6 +27,8 @@ int main(int argc, char **argv) {
     } else {
         logfp = stdout;
     }
+
+    file_check(csv, logfp);
 
     t_mat_str_dyn votes;
     t_mat_int_dyn duels;
@@ -44,19 +47,19 @@ int main(int argc, char **argv) {
     fclose(csv);
 
     if (strcmp(argm.methode_type, "va") == 0) {
-        //elimination();
+        elimination(votes, logfp);
     } else if (strcmp(argm.methode_type, "uni1") == 0) {
         uninominal1(votes, logfp);
     } else if (strcmp(argm.methode_type, "uni2") == 0) {
-        //uninominal2();
+        uninominal2(votes, logfp);
     } else if (strcmp(argm.methode_type, "cm") == 0) {
-        //condorcet_m();
+        condorcet_m(votes, duels, logfp);
     } else if (strcmp(argm.methode_type, "cp") == 0) {
-        //condorcet_p();
+        condorcet_p(votes, duels, logfp);
     } else if (strcmp(argm.methode_type, "cs") == 0) {
-        //condorcet_s();
+        condorcet_s(votes, duels, logfp);
     } else {
-        //placeholder()
+        default_mtd(votes, duels, logfp);
     }
 
 
