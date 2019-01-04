@@ -28,16 +28,12 @@ int main(int argc, char **argv) {
         logfp = stdout;
     }
 
-    file_check(csv, logfp);
+    check_file(csv, logfp);
 
     t_mat_str_dyn votes;
     t_mat_int_dyn duels;
 
-    if (strcmp(argm.csv_type, "-i") == 0) {
-        read_csv(csv, argm.csv_type, &votes, &duels);
-    } else {
-        read_csv(csv, argm.csv_type, &votes, &duels);
-    }
+    read_csv(csv, argm.csv_type, &votes, &duels);
 
     // debug
     affiche_t_mat_str_dyn(votes, logfp);
@@ -59,9 +55,8 @@ int main(int argc, char **argv) {
     } else if (strcmp(argm.methode_type, "cs") == 0) {
         condorcet_s(votes, duels, logfp);
     } else {
-        default_mtd(votes, duels, logfp);
+        default_mtd(argm.csv_type, votes, duels, logfp);
     }
-
 
     if(logfp != stdout) {
         fclose(logfp);

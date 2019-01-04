@@ -16,6 +16,6 @@
 
 void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn * duels);
 
-check_file(FILE * csv, FILE * logfp);
+void check_file(FILE * csv, FILE * logfp);
 
 #endif

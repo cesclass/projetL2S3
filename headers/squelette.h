@@ -8,6 +8,9 @@
  * 
  */
 
+#ifndef SQUELETTE
+#define SQUELETTE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -104,10 +107,89 @@ void affiche_tab_int(int *tab, int dim, FILE *logfp);
  */
 void affiche_mat_int(int **duels_mat, int nbRows, int nbCols, FILE *logfp);
 
+// STRUCT ==================================================
+
+/**
+ * @brief 
+ * 
+ * @param stTab 
+ * @param nbRows 
+ * @param nbCols 
+ */
 void creer_t_mat_int_dyn(t_mat_int_dyn *stTab, int nbRows, int nbCols);
+
+/**
+ * @brief 
+ * 
+ * @param stTab 
+ * @param dim 
+ */
 void creer_t_tab_int_dyn(t_tab_int_dyn *stTab, int dim);
+
+/**
+ * @brief 
+ * 
+ * @param s_tabmots 
+ */
 void creer_t_mat_str_dyn(t_mat_str_dyn * s_tabmots);
+
+/**
+ * @brief 
+ * 
+ * @param t_tab 
+ * @param logfp 
+ */
 void affiche_t_tab_int_dyn(t_tab_int_dyn t_tab, FILE *logfp);
+
+/**
+ * @brief 
+ * 
+ * @param t_tabmots 
+ * @param logfp 
+ */
 void affiche_t_mat_str_dyn(t_mat_str_dyn t_tabmots, FILE *logfp);
+
+/**
+ * @brief 
+ * 
+ * @param t_tab 
+ * @param logfp 
+ */
 void affiche_t_mat_int_dyn(t_mat_int_dyn t_tab, FILE *logfp);
+
+/**
+ * @brief 
+ * 
+ * @param duels_mat 
+ * @param nbRows 
+ * @param nbCols 
+ * @param logfp 
+ */
 void affiche_mat_int(int **duels_mat, int nbRows, int nbCols, FILE *logfp);
+
+// CONVERT =================================================
+
+/**
+ * @brief 
+ * 
+ * @param mat 
+ */
+void reduire_t_mat_str_dyn(t_mat_str_dyn *mat);
+
+/**
+ * @brief 
+ * 
+ * @param votes 
+ * @param duels 
+ */
+void remplir_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels);
+
+/**
+ * @brief 
+ * 
+ * @param votes 
+ * @param duels 
+ */
+void convertir_en_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels);
+
+#endif

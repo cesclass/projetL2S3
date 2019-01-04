@@ -47,7 +47,7 @@ void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn 
     
 }
 
-check_file(FILE * csv, FILE * logfp) {
+void check_file(FILE * csv, FILE * logfp) {
     if(csv == NULL) {
         fprintf(stderr, "ERR CSV : Le fichier csv ne peut etre ouvert.\n");
         exit(1);

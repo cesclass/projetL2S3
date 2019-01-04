@@ -8,9 +8,6 @@
  * 
  */
 
-#ifndef SQUELETTE
-#define SQUELETTE
-
 #include "../headers/squelette.h"
 
 // INT =====================================================
@@ -130,7 +127,3 @@ void convertir_en_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels) {
     }
 }
 
-
-// FICHIERS ================================================
-
-#endif
