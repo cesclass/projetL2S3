@@ -11,32 +11,32 @@
 #include "../headers/argument_read.h"
 
 void help_arguments(void) {
-    printf("+-----------------------------------------------+\n");
-    printf("|  REV_PARTY Helper                             |\n");
-    printf("+-----------------------------------------------+\n");
-    printf("|  Ecriture des arguments :                     |\n");
-    printf("|                                               |\n");
-    printf("|  -i | -d <file.csv> (obligatoire)             |\n");
-    printf("|  i : le fichier csv contient la liste         |\n");
-    printf("|      des votes avec l'id du votant            |\n");
-    printf("|  d : le fichier csv contient la matrice       |\n");
-    printf("|      des duels                                |\n");
-    printf("|                                               |\n");
-    printf("|  -l <log_file.txt> (optionnel)                |\n");
-    printf("|  l : enregistre les logs (etapes de calculs)  |\n");
-    printf("|      dans le fichier specifie                 |\n");
-    printf("|                                               |\n");
-    printf("|  -m <methode> (optionnel)                     |\n");
-    printf("|  m : specifie la methode de scrutin a employe |\n");
-    printf("|  <methode> :                 (compatibilite)  |\n");
-    printf("|    va : elemination successive          (-i)  |\n");
-    printf("|    uni1 : uninominal a 1 tour           (-i)  |\n");
-    printf("|    uni2 : uninominal a 2 tours          (-i)  |\n");
-    printf("|    cm : condorcet minimax          (-i | -d)  |\n");
-    printf("|    cs : condorcet schulze          (-i | -d)  |\n");
-    printf("|    cp : condorcet paire            (-i | -d)  |\n");
-    printf("|                                               |\n");
-    printf("+-----------------------------------------------+\n");
+    fprintf(stderr, "+-----------------------------------------------+\n");
+    fprintf(stderr, "|  REV_PARTY Helper                             |\n");
+    fprintf(stderr, "+-----------------------------------------------+\n");
+    fprintf(stderr, "|  Ecriture des arguments :                     |\n");
+    fprintf(stderr, "|                                               |\n");
+    fprintf(stderr, "|  -i | -d <file.csv> (obligatoire)             |\n");
+    fprintf(stderr, "|  i : le fichier csv contient la liste         |\n");
+    fprintf(stderr, "|      des votes avec l'id du votant            |\n");
+    fprintf(stderr, "|  d : le fichier csv contient la matrice       |\n");
+    fprintf(stderr, "|      des duels                                |\n");
+    fprintf(stderr, "|                                               |\n");
+    fprintf(stderr, "|  -l <log_file.txt> (optionnel)                |\n");
+    fprintf(stderr, "|  l : enregistre les logs (etapes de calculs)  |\n");
+    fprintf(stderr, "|      dans le fichier specifie                 |\n");
+    fprintf(stderr, "|                                               |\n");
+    fprintf(stderr, "|  -m <methode> (optionnel)                     |\n");
+    fprintf(stderr, "|  m : specifie la methode de scrutin a employe |\n");
+    fprintf(stderr, "|  <methode> :                 (compatibilite)  |\n");
+    fprintf(stderr, "|    va : elemination successive          (-i)  |\n");
+    fprintf(stderr, "|    uni1 : uninominal a 1 tour           (-i)  |\n");
+    fprintf(stderr, "|    uni2 : uninominal a 2 tours          (-i)  |\n");
+    fprintf(stderr, "|    cm : condorcet minimax          (-i | -d)  |\n");
+    fprintf(stderr, "|    cs : condorcet schulze          (-i | -d)  |\n");
+    fprintf(stderr, "|    cp : condorcet paire            (-i | -d)  |\n");
+    fprintf(stderr, "|                                               |\n");
+    fprintf(stderr, "+-----------------------------------------------+\n");
 }
 
 void init_arguments(arguments *a) {
@@ -62,9 +62,7 @@ void check_arguments(int argc, char **argv, arguments *argm) {
     // debug
     // for(int i = 0 ; i < argc ; i++) {printf("argv[%d] : %s\n", i, argv[i]);}
      
-
     init_arguments(argm);
-    printf("\n");
 
     // debug
     // show_arguments(argm);
@@ -79,7 +77,7 @@ void check_arguments(int argc, char **argv, arguments *argm) {
                     argm->csv_path = argv[c];
                 }
             } else {
-                printf("ERR : <%s> <%s>\n", argv[c], argm->csv_type);
+                fprintf(stderr, "ERR : <%s> <%s>\n", argv[c], argm->csv_type);
                 help_arguments();
                 exit(EXIT_FAILURE);
             }
@@ -92,7 +90,7 @@ void check_arguments(int argc, char **argv, arguments *argm) {
                     argm->log_path = argv[c];
                 }
             } else {
-                printf("ERR : <%s> <%d>\n", argv[c], argm->logging);
+                fprintf(stderr, "ERR : <%s> <%d>\n", argv[c], argm->logging);
                 help_arguments();
                 exit(EXIT_FAILURE);
             }
@@ -106,13 +104,13 @@ void check_arguments(int argc, char **argv, arguments *argm) {
                 }
 
             } else {
-                printf("ERR : <%s> <%d>\n", argv[c], argm->method);
+                fprintf(stderr, "ERR : <%s> <%d>\n", argv[c], argm->method);
                 help_arguments();
                 exit(EXIT_FAILURE);
             }
 
         } else {
-            printf("ERR : Unknow <%s>\n", argv[c]);
+            fprintf(stderr, "ERR : Unknow <%s>\n", argv[c]);
             help_arguments();
             exit(EXIT_FAILURE);
         }
@@ -123,7 +121,7 @@ void check_arguments(int argc, char **argv, arguments *argm) {
         argm->logging && strcmp(argm->log_path, "\0") == 0) || (
         argm->method && strcmp(argm->methode_type, "\0") == 0 ))
     {
-        printf("ERR-1\n");
+        fprintf(stderr, "ERR : Arguments manquants\n");
         help_arguments();
         exit(EXIT_FAILURE);
     }
@@ -131,13 +129,13 @@ void check_arguments(int argc, char **argv, arguments *argm) {
     if (argm->method) {
         if ((strcmp(argm->methode_type, "cm") != 0 &&
             strcmp(argm->methode_type, "cp") != 0 &&
-            strcmp(argm->methode_type, "cs") != 0 ) || 
+            strcmp(argm->methode_type, "cs") != 0 ) &&
             (strcmp(argm->csv_type, "-i") == 0 &&
             strcmp(argm->methode_type, "va") != 0 &&
             strcmp(argm->methode_type, "uni1") != 0 &&
             strcmp(argm->methode_type, "uni2") != 0 ))
         {   
-            printf("ERR-2\n");
+            fprintf(stderr, "ERR : Methode incorrecte <%s>\n", argm->methode_type);
             help_arguments();
             exit(EXIT_FAILURE);
         }

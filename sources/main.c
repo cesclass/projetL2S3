@@ -36,9 +36,9 @@ int main(int argc, char **argv) {
     read_csv(csv, argm.csv_type, &votes, &duels);
 
     // debug
-    affiche_t_mat_str_dyn(votes, logfp);
-    printf("\n");
-    affiche_t_mat_int_dyn(duels, logfp);
+    // affiche_t_mat_str_dyn(votes, stdout);
+    // printf("\n");
+    // affiche_t_mat_int_dyn(duels, stdout);
 
     fclose(csv);
 
@@ -57,6 +57,8 @@ int main(int argc, char **argv) {
     } else {
         default_mtd(argm.csv_type, votes, duels, logfp);
     }
+
+    fprintf(logfp, "\n");
 
     if(logfp != stdout) {
         fclose(logfp);
