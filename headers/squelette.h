@@ -44,13 +44,6 @@ typedef struct s_mat_char_dyn{
   int offset; // donne le nombre de colonnes avant celles des candidats
 } t_mat_str_dyn;
 
-// struct arc pour les graphes
-typedef struct s_arc_p{ // arc pondéré
-  int orig;
-  int dest;
-  int poids;
-} t_arc_p;
-
 /**
  * @brief Cree un tableau d'entiers de taille "dim".
  * 

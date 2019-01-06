@@ -232,7 +232,6 @@ void condorcet_s(const t_mat_str_dyn votes, const t_mat_int_dyn duels, FILE * lo
 }
 
 void default_mtd(const char * csv_type, const t_mat_str_dyn votes, const t_mat_int_dyn duels, FILE * logfp) {
-    fprintf(logfp, "\n");
     if (strcmp(csv_type, "-i") == 0) {
         elimination(votes, logfp); 
         fprintf(logfp, "\n");

@@ -13,6 +13,8 @@
 #include "../headers/file_read.h"
 #include "../headers/squelette.h"
 #include "../headers/methodes.h"
+#include "../headers/liste.h"
+#include "../headers/arc.h"
 
 int main(int argc, char **argv) {
 
@@ -58,8 +60,18 @@ int main(int argc, char **argv) {
         default_mtd(argm.csv_type, votes, duels, logfp);
     }
 
-    fprintf(logfp, "\n");
+    FILE * fpy = fopen("./graph.py", "w");
+    fprintf(fpy, "\n");
+    fclose(fpy);
+    fpy = fopen("./graph.py", "a");
 
+    liste arcs;
+    createList(&arcs);
+    remplir_liste_arcs(duels, &arcs);
+    graph_python(arcs, fpy);
+    fclose(fpy);
+
+    fprintf(logfp, "\n");
     if(logfp != stdout) {
         fclose(logfp);
     }

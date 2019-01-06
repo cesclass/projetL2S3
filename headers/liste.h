@@ -41,8 +41,8 @@ typedef struct liste liste;
 
 void saisie_element(Elementliste *e);
 void copie_element(Elementliste *cible, Elementliste source);
-void afficher_element(Elementliste e,FILE *fp);
-bool cmp_elements(Elementliste e1,Elementliste e2);
+void afficher_element(Elementliste e, FILE *fp);
+bool cmp_elements(Elementliste e1, Elementliste e2);
 
 int nbEltList(liste lst); // nombre d'éléments
 void createList(liste *p); // renvoie une liste statique
@@ -54,9 +54,10 @@ void headList(liste p, Elementliste *e); // renvoie l'élément de tête
 void tailList(liste p, Elementliste *e); // renvoie l'élément de fin
 bool emptyList(liste p); // renvoie true si la pile est vide, false sinon
 bool fullList(liste p); // renvoie true si la pile est pleine, false sinon
-void dumpList(liste p,FILE *fp); // affiche le contenu de la liste
-void swapEltList(Elementliste *a,Elementliste *b); // échange deux éléments de la liste
+void dumpList(liste p, FILE *fp); // affiche le contenu de la liste
+void swapEltList(Elementliste *a, Elementliste *b); // échange deux éléments de la liste
 void bubbleSortList(liste *p); // trie la liste
-void pickEltList(liste l,Elementliste *e,int index); // renvoie l'élément n° index
-bool belongEltList(liste p,Elementliste e); // true si l'élément est dans la liste
+void pickEltList(liste l, Elementliste *e, int index); // renvoie l'élément n° index
+bool belongEltList(liste p, Elementliste e); // true si l'élément est dans la liste
+
 #endif
