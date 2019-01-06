@@ -19,9 +19,9 @@
 #define DIMMAX 100  // taille maximale de la liste statique
 #define VIDE -1     // constante  pour indiquer que la liste est vide (par convention)
 
-/* ----------------------------------
+/*----------------------------------
         Déclaration des types
-   --------------------------------*/
+  ----------------------------------*/
 
 typedef struct s_arc_p { /// arc pondéré
   int orig;
