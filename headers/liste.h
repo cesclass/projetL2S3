@@ -44,6 +44,12 @@ void copie_element(Elementliste *cible, Elementliste source);
 void afficher_element(Elementliste e, FILE *fp);
 bool cmp_elements(Elementliste e1, Elementliste e2);
 
+/**
+ * @brief 
+ * 
+ * @param lst 
+ * @return int 
+ */
 int nbEltList(liste lst); // nombre d'éléments
 void createList(liste *p); // renvoie une liste statique
 void addFrontList(liste *p, Elementliste e); // ajoute un élément devant

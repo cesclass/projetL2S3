@@ -14,6 +14,14 @@
 #include <stdlib.h>
 #include "../headers/squelette.h"
 
+/**
+ * @brief 
+ * 
+ * @param csv 
+ * @param csv_type 
+ * @param votes 
+ * @param duels 
+ */
 void read_csv(FILE * csv, char * csv_type, t_mat_str_dyn * votes, t_mat_int_dyn * duels);
 
 void check_file(FILE * csv, FILE * logfp);
