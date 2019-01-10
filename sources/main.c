@@ -2,9 +2,9 @@
  * @file main.c
  * @author Cyril E (cyril.esclassan@univ-tlse3.fr)
  * 
- * @brief ...
+ * @brief (Main) Fichier principal
  * 
- * @licence MIT
+ * @copyright Licence MIT
  * 
  */
 
@@ -18,9 +18,11 @@
 
 int main(int argc, char **argv) {
 
+    // Gestion des arguments
     arguments argm;
     check_arguments(argc, argv, &argm);
 
+    // Gestion des fichiers CSV (TSV) et du Log
     FILE * csv = fopen(argm.csv_path, "r");
     FILE * logfp;
     
@@ -32,18 +34,20 @@ int main(int argc, char **argv) {
 
     check_file(csv, logfp);
 
+    // Lecture du CSV et remplissage des matrices
     t_mat_str_dyn votes;
     t_mat_int_dyn duels;
 
     read_csv(csv, argm.csv_type, &votes, &duels);
-
-    // debug
-    // affiche_t_mat_str_dyn(votes, stdout);
-    // printf("\n");
-    // affiche_t_mat_int_dyn(duels, stdout);
-
     fclose(csv);
 
+    // Affichage des matrices
+    affiche_t_mat_str_dyn(votes, logfp);
+    fprintf(logfp, "\n");
+    affiche_t_mat_int_dyn(duels, logfp);
+    fprintf(logfp, "\n");
+
+    // Appel de fonction pour appliquer la/les methodes de scrutins
     if (strcmp(argm.methode_type, "va") == 0) {
         elimination(votes, logfp);
     } else if (strcmp(argm.methode_type, "uni1") == 0) {
@@ -60,6 +64,7 @@ int main(int argc, char **argv) {
         default_mtd(argm.csv_type, votes, duels, logfp);
     }
 
+    // Generation des arcs et config du fichier python pour les graphes
     FILE * fpy = fopen("./graph.py", "w");
     fprintf(fpy, "\n");
     fclose(fpy);
@@ -71,6 +76,7 @@ int main(int argc, char **argv) {
     graph_python(arcs, fpy);
     fclose(fpy);
 
+    // Fermeture du Log, Free, return et FIN
     fprintf(logfp, "\n");
     if(logfp != stdout) {
         fclose(logfp);

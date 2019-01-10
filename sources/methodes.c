@@ -2,7 +2,7 @@
  * @file methodes.c
  * @author Cyril E (cyril.esclassan@univ-tlse3.fr)
  * 
- * @brief 
+ * @brief Definition des fonctions de methodes.h
  * 
  * @licence MIT
  * 
@@ -64,6 +64,7 @@ void elimination(const t_mat_str_dyn votes, FILE * logfp) {
 
 }
 
+
 void uninominal1(const t_mat_str_dyn votes, FILE * logfp) {
     int vote_nul, rang, id, nb_nuls = 0;
     int res[votes.nbCols];
@@ -110,6 +111,7 @@ void uninominal1(const t_mat_str_dyn votes, FILE * logfp) {
         nb_candidats, nb_votes, votes.tab[0][gagnant], (float) score/(nb_votes-nb_nuls)*100, "%");
 
 }
+
 
 void uninominal2(const t_mat_str_dyn votes, FILE * logfp) {
     int vote_nul, rang, id, nb_nuls = 0;
@@ -219,17 +221,21 @@ void uninominal2(const t_mat_str_dyn votes, FILE * logfp) {
         nb_votes, votes.tab[0][gagnant], (float) score/(nb_votes-nb_nuls)*100, "%");
 }
 
+
 void condorcet_m(const t_mat_str_dyn votes, const t_mat_int_dyn duels, FILE * logfp) {
     fprintf(logfp, "Condorcet minimax : indisponnible\n");
 }
+
 
 void condorcet_p(const t_mat_str_dyn votes, const t_mat_int_dyn duels, FILE * logfp) {
     fprintf(logfp, "Condorcet paire : indisponnible\n");
 }
 
+
 void condorcet_s(const t_mat_str_dyn votes, const t_mat_int_dyn duels, FILE * logfp) {
     fprintf(logfp, "Condorcet shoulze : indisponnible\n");
 }
+
 
 void default_mtd(const char * csv_type, const t_mat_str_dyn votes, const t_mat_int_dyn duels, FILE * logfp) {
     if (strcmp(csv_type, "-i") == 0) {

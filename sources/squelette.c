@@ -2,9 +2,9 @@
  * @file squelette.c
  * @author Cyril E (cyril.esclassan@univ-tlse3.fr)
  * 
- * @brief Definitino des fonctions de squelette.h
+ * @brief Definition des fonctions de squelette.h
  * 
- * @licence MIT
+ * @copyright Licence MIT
  * 
  */
 

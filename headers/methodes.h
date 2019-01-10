@@ -2,9 +2,10 @@
  * @file methodes.h
  * @author Cyril E (cyril.esclassan@univ-tlse3.fr)
  * 
- * @brief 
+ * @brief Fichier de declaration des fonctions permettant d'appliquer
+ *      les differentes methodes de scrutins
  * 
- * @licence MIT
+ * @copyright Licence MIT
  * 
  */
 
@@ -17,63 +18,63 @@
 
 
 /**
- * @brief 
+ * @brief Mode de scrutin : Elimination successive
  * 
- * @param votes 
- * @param logfp 
+ * @param votes     Liste des votes (balots)
+ * @param logfp     Sortie de l'affichage
  */
 void elimination(const t_mat_str_dyn votes, FILE * logfp);
 
 /**
- * @brief 
+ * @brief Mode de scrutin : Uninominal a 1 tour
  * 
- * @param votes 
- * @param logfp 
+ * @param votes     Liste des votes (balots)
+ * @param logfp     Sortie de l'affichage
  */
 void uninominal1(const t_mat_str_dyn votes, FILE * logfp);
 
 /**
- * @brief 
+ * @brief Mode de scrutin : Uninominal a 2 tours
  * 
- * @param votes 
- * @param logfp 
+ * @param votes     Liste des votes (balots)
+ * @param logfp     Sortie de l'affichage
  */
 void uninominal2(const t_mat_str_dyn votes, FILE * logfp);
 
 /**
- * @brief 
+ * @brief Mode de scrutin : Condorcet Minimax
  * 
- * @param votes 
- * @param duels 
- * @param logfp 
+ * @param votes     Liste des votes (candidats + duels)
+ * @param duels     Matrice de duels
+ * @param logfp     Sortie de l'affichage
  */
 void condorcet_m(const t_mat_str_dyn votes, const t_mat_int_dyn duels, FILE * logfp);
 
 /**
- * @brief 
+ * @brief Mode de scrutin : Condorcet Paires
  * 
- * @param votes 
- * @param duels 
- * @param logfp 
+ * @param votes     Liste des votes (candidats + duels)
+ * @param duels     Matrice de duels
+ * @param logfp     Sortie de l'affichage
  */
 void condorcet_p(const t_mat_str_dyn votes, const t_mat_int_dyn duels, FILE * logfp);
 
 /**
- * @brief 
+ * @brief Mode de scrutin : Condorcet Shulze
  * 
- * @param votes 
- * @param duels 
- * @param logfp 
+ * @param votes     Liste des votes (candidats + duels)
+ * @param duels     Matrice de duels
+ * @param logfp     Sortie de l'affichage
  */
 void condorcet_s(const t_mat_str_dyn votes, const t_mat_int_dyn duels, FILE * logfp);
 
 /**
- * @brief 
+ * @brief Appel des fonctions (modes de scrutin) compatibles en fonction du type de fichier.
  * 
- * @param csv_type 
- * @param votes 
- * @param duels 
- * @param logfp 
+ * @param csv_type  type de fichier (balot (-i) ou duel (-d))
+ * @param votes     Liste des votes (balots) OU (candidats + duels)
+ * @param duels     Matrice de duels
+ * @param logfp     Sortie de l'affichage
  */
 void default_mtd(const char * csv_type, const t_mat_str_dyn votes, const t_mat_int_dyn duels, FILE * logfp);
 

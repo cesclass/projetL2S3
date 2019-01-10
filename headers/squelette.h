@@ -2,9 +2,10 @@
  * @file squelette.h
  * @author Cyril E (cyril.esclassan@univ-tlse3.fr)
  * 
- * @brief 
+ * @brief Fichier de declaration des structures de donnes principales et
+ *      des fonctions permettant de les utilises.
  * 
- * @licence MIT
+ * @copyright Licence MIT
  * 
  */
 
@@ -23,20 +24,29 @@
 #define DEFAULT_COLS 100    // Nombre de colonnes par defaut
 #define DEFAULT_LEN 50      // Nombre de caractere par case par defaut
 
-// Tableau d'entiers
+/**
+ * @brief Structure contenant un tableau d'entiers et sa taille
+ * 
+ */
 typedef struct s_tab_dyn{
   int * tab;
   int dim;
 } t_tab_int_dyn;
 
-// Matrice d'entiers
+/**
+ * @brief Structure contenant une matrice d'entiers et sa taille
+ * 
+ */
 typedef struct s_mat_dyn{
   int ** tab;
   int nbRows;
   int nbCols;
 } t_mat_int_dyn;
 
-// Matrices de chaines de caracteres
+/**
+ * @brief Structure contenant une matrices de chaines de caracteres et sa taille
+ * 
+ */
 typedef struct s_mat_char_dyn{
   char *** tab;
   int nbRows;
@@ -45,143 +55,142 @@ typedef struct s_mat_char_dyn{
 } t_mat_str_dyn;
 
 /**
- * @brief Cree un tableau d'entiers de taille "dim".
+ * @brief Cree et renvoie un tableau d'entiers
  * 
- * @param dim 
- * @return int* 
+ * @param dim   Taille du tableau
+ * @return int* Tableau d'entiers
  */
 int * creer_tab_int(int dim);
 
 /**
- * @brief Cree une matrice de "nbRows" lignes et "nbCols" Colonnes.
+ * @brief Cree et renvoie une matrice d'entiers
  * 
- * @param nbRows 
- * @param nbCols 
- * @return int** 
+ * @param nbRows  Nb de lignes de la matrice
+ * @param nbCols  Nb de colonnes de la matrice
+ * @return int**  Matrice d'entiers
  */
 int ** creer_mat_int(int nbRows, int nbCols);
 
 /**
- * @brief Initialise le tableau "tab" de taille "dim" avec la valeur "valeur".
+ * @brief Initialisation d'un tableau d'entiers
  * 
- * @param tab 
- * @param dim 
- * @param valeur 
+ * @param tab     Tableau d'entiers
+ * @param dim     Taille du tableau
+ * @param valeur  Valeur a mettre dans les cases
  */
 void init_tab_int(int *tab, int dim, int valeur);
 
 /**
- * @brief Initialise la matrice "mat" de "nbRows" lignes et "nbCols" Colonnes avec
- *        la valeur "valeur".
+ * @brief Initialisation d'une matrice d'entiers
  * 
- * @param mat 
- * @param nbRows 
- * @param nbCols 
- * @param valeur 
+ * @param mat     Matrice d'entier
+ * @param nbRows  Nb de lignes de la matrice
+ * @param nbCols  Nb de colonnes de la matrice
+ * @param valeur  Valeur a mettre dans les cases
  */
 void init_mat_int(int **mat, int nbRows, int nbCols, int valeur);
 
 /**
- * @brief Affiche le contenu du tableau "tab" de taille "dim" sur la sortie "logfp".
+ * @brief Affiche le contenue d'un tableau d'entiers
  * 
- * @param tab 
- * @param dim 
- * @param logfp 
+ * @param tab   Tableau d'entiers
+ * @param dim   Taille du tableau
+ * @param logfp Sortie de l'affichage
  */
 void affiche_tab_int(int *tab, int dim, FILE *logfp);
 
 /**
- * @brief Affiche le contenu de la matrice "duels_mat" de "nbRows" lignes et
- *        "nbCols" colonnes sur la sortie "logfp".
+ * @brief Affiche le contenue d'une matrice d'entiers
  * 
- * @param tab 
- * @param dim 
- * @param logfp 
+ * @param duels_mat   Matrice d'entiers
+ * @param nbRows      Nombre de lignes de la matrice
+ * @param nbCols      Nombre de colonne de la matrice
+ * @param logfp       Sortie de l'affichage
  */
 void affiche_mat_int(int **duels_mat, int nbRows, int nbCols, FILE *logfp);
 
 // STRUCT ==================================================
 
 /**
- * @brief 
+ * @brief Initialisation d'une structure t_mat_int_dyn
  * 
- * @param stTab 
- * @param nbRows 
- * @param nbCols 
+ * @param stTab   Structure a initialiser
+ * @param nbRows  Nb de lignes de la matrice d'entiers dans la structure
+ * @param nbCols  Nb de colonnes de la matrice d'entiers dans la structure
  */
 void creer_t_mat_int_dyn(t_mat_int_dyn *stTab, int nbRows, int nbCols);
 
 /**
- * @brief 
+ * @brief Initialisation d'une structure t_tab_int_dyn
  * 
- * @param stTab 
- * @param dim 
+ * @param stTab   Structure a initialiser
+ * @param dim     Taille du tableau dans la structure
  */
 void creer_t_tab_int_dyn(t_tab_int_dyn *stTab, int dim);
 
 /**
- * @brief 
+ * @brief Initialisation d'une structure t_mat_str_dyn
  * 
- * @param s_tabmots 
+ * @param s_tabmots   Structure a initialiser
  */
 void creer_t_mat_str_dyn(t_mat_str_dyn * s_tabmots);
 
 /**
- * @brief 
+ * @brief Affiche le contenue d'un tableau d'entiers
  * 
- * @param t_tab 
- * @param logfp 
+ * @param t_tab   Structure contenant le tableau d'entiers
+ * @param logfp   Sortie de l'affichage
  */
 void affiche_t_tab_int_dyn(t_tab_int_dyn t_tab, FILE *logfp);
 
 /**
- * @brief 
+ * @brief Affiche le contenue d'une matrice de chaines de caracteres
  * 
- * @param t_tabmots 
- * @param logfp 
+ * @param t_tabmots Structure contenant la matrices de chaines de caracteres
+ * @param logfp     Sortie de l'affichage
  */
 void affiche_t_mat_str_dyn(t_mat_str_dyn t_tabmots, FILE *logfp);
 
 /**
- * @brief 
+ * @brief Affiche le contenue d'une matrice d'entiers
  * 
- * @param t_tab 
- * @param logfp 
+ * @param t_tab   Structure contenant la matrice d'entiers
+ * @param logfp   Sortie de l'affichage
  */
 void affiche_t_mat_int_dyn(t_mat_int_dyn t_tab, FILE *logfp);
 
 /**
- * @brief 
+ * @brief Affiche le contenue d'une matrice d'entiers
  * 
- * @param duels_mat 
- * @param nbRows 
- * @param nbCols 
- * @param logfp 
+ * @param duels_mat   Matrice d'entiers
+ * @param nbRows      Nombre de lignes
+ * @param nbCols      Nombre de colonnes
+ * @param logfp       Sortie de l'affichage
  */
 void affiche_mat_int(int **duels_mat, int nbRows, int nbCols, FILE *logfp);
 
 // CONVERT =================================================
 
 /**
- * @brief 
+ * @brief Reduit la taille de la memoire d'une matrice de chaine de caracteres
  * 
- * @param mat 
+ * @param mat   Matrice de chaine de caracteres
  */
 void reduire_t_mat_str_dyn(t_mat_str_dyn *mat);
 
 /**
- * @brief 
+ * @brief Copie une matrice de duels (str) dans une matrice de duels (int)
  * 
- * @param votes 
- * @param duels 
+ * @param votes   Matrice de duels (str)
+ * @param duels   Matrice de duels (int)
  */
 void remplir_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels);
 
 /**
- * @brief 
+ * @brief Converti un liste (balots) en matrice de duels
  * 
- * @param votes 
- * @param duels 
+ * @param votes   Liste des votes (balots)
+ * @param duels   Matrice de duels
  */
 void convertir_en_duels(t_mat_str_dyn * votes, t_mat_int_dyn * duels);
 

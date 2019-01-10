@@ -2,7 +2,7 @@
  * @file argument_read.c
  * @author Cyril E (cyril.esclassan@univ-tlse3.fr)
  * 
- * @brief ...
+ * @brief Definition des fonctions de argument_read.h
  * 
  * @licence MIT
  * 

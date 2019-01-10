@@ -2,9 +2,10 @@
  * @file argument_read.h
  * @author Cyril E (cyril.esclassan@univ-tlse3.fr)
  * 
- * @brief ...
+ * @brief Fichier de declaration des fonctions de verification des arguments et 
+ *      d'affichage du helper
  * 
- * @licence MIT
+ * @copyright Licence MIT
  * 
  */
 
@@ -17,8 +18,7 @@
 #include <stdbool.h>
 
 /**
- * @brief Structure contenant les arguments et 
- *      un boolean attestant de leur presence ou non
+ * @brief structure representant les arguments traites
  * 
  */
 typedef struct arguments {
@@ -31,31 +31,34 @@ typedef struct arguments {
 } arguments;
 
 /**
- * @brief 
+ * @brief Affichage d'un helper
  * 
  */
 void help_arguments(void);
 
 /**
- * @brief 
+ * @brief Initialisation d'une structure "arguments"
  * 
- * @param a 
+ * @param a     Structure arguments
  */
 void init_arguments(arguments *a);
 
 /**
- * @brief 
+ * @brief Affichage du contenue d'une structure "arguments"
  * 
- * @param a 
+ * @param a     Structure arguments
  */
 void show_arguments(const arguments *a);
 
 /**
- * @brief 
+ * @brief Lecture des arguemnts passes en parametre lors de l'execution
  * 
- * @param argc 
- * @param argv 
- * @param argm 
+ * Cette fonction lie et traite les arguments avant de les ranges dans une structure.
+ * Elle verifie ensuite la presence, l'absance et la coherence des arguments
+ * 
+ * @param argc  Nombre d'arguments passes
+ * @param argv  Tableau d'arguments
+ * @param argm  Structure contenant les arguments apres leur traitement
  */
 void check_arguments(int argc, char **argv, arguments *argm);
 

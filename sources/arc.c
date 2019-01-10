@@ -2,9 +2,9 @@
  * @file arc.c
  * @author Cyril E (cyril.esclassan@univ-tlse3.fr)
  * 
- * @brief 
+ * @brief Definition des fonctions de arc.h
  * 
- * @licence MIT
+ * @copyright Licence MIT
  * 
  */
 

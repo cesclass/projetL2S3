@@ -2,12 +2,11 @@
  * @file liste.c
  * @author Cyril E (cyril.esclassan@univ-tlse3.fr)
  * 
- * @brief 
+ * @brief Definition des fonctions de liste.h
  * 
- * @licence MIT
+ * @copyright Licence MIT
  * 
  */
-
 
 #include "../headers/liste.h"
 

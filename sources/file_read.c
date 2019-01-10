@@ -2,9 +2,9 @@
  * @file file_read.c
  * @author Cyril E (cyril.esclassan@univ-tlse3.fr)
  * 
- * @brief 
+ * @brief Definition des fonctions de file_read.h
  * 
- * @licence MIT
+ * @copyright Licence MIT
  * 
  */
 
